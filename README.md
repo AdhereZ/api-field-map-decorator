@@ -1,5 +1,21 @@
-import { baseDecorator, deepDecorator, filterDecorator, deserialize, deserializeArr } from '../src';
-import { formatDate } from '../src/lib/util';
+# api-field-map-decorator
+
+## Introduction
+
+an api field decorator
+
+## Get Start
+
+```
+npm install api-field-map-decorator --save
+```
+
+## Example
+
+This is a use case study
+
+```js
+import { baseDecorator, deepDecorator, filterDecorator, deserialize, deserializeArr } from 'api-field-map-decorator';
 
 class Lesson {
   @baseDecorator('ClassName', 'string')
@@ -139,43 +155,39 @@ const Staffs = [
 ];
 
 const arr = deserializeArr(Staffs, Staff);
-console.log(arr);
-describe('transformer', () => {
-  test('name', () => {
-    expect(arr[0].id).toBe('123456');
-  });
+```
 
-  test('type', () => {
-    expect(arr[1].age).toBe(18);
-    expect(arr[0].grade).toBeCloseTo(98.6);
-    expect(arr[1].grade).toBeNull();
-  });
+This is the transform result:
 
-  test('deep', () => {
-    expect(arr[0].address.city).toBe('深圳');
-  });
-});
-
-describe('filter', () => {
-  test('inner', () => {
-    const [target] = arr[0].lessons || [];
-    const times = 1609430399000;
-    const datetime = formatDate(times);
-    const date = formatDate(times, 'Y-M-D');
-    const time = formatDate(times, 'h:m:s');
-    expect(target.datetime).toBe(datetime);
-    expect(target.date).toBe(date);
-    expect(target.time).toBe(time);
-  });
-
-  test('custom', () => {
-    expect(arr[0].sex).toBe('男生');
-    expect(arr[1].status).toBe('辍学');
-  });
-});
-
-describe('boundary', () => {
-  test('do nothing', () => {
-    expect(arr[0].extra).toBe('额外信息');
-  });
-});
+```js
+[
+      Staff {
+        id: '1111',
+        name: 'Tom',
+        age: 10,
+        notNum: 'function',
+        notFloat: 'def',
+        sex: '男生',
+        unknownType: 'funny',
+        grade: 922.6,
+        address: Address { province: '广东', city: '深圳', fullAddress: '深圳小学三年二班' },
+        lessons: [ [Lesson], [Lesson] ],
+        status: '读书中',
+        extra: '额外信息'
+      },
+      Staff {
+        id: '2345',
+        name: 'Ming',
+        age: 21,
+        notNum: undefined,
+        notFloat: undefined,
+        sex: '女生',
+        unknownType: undefined,
+        grade: null,
+        address: Address { province: '湖北', city: '武汉', fullAddress: '华中师范大学' },
+        lessons: [],
+        status: '辍学',
+        extra: undefined
+      }
+    ]
+```
