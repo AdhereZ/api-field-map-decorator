@@ -9,13 +9,20 @@
     "build:esm": "rimraf esm && tsc -p tsconfig.json",
     "lint": "eslint src"
   },
-  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "json-decorator",
+    "typescript",
+    "api-field-mapper"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ForeverJuvenile/directory.git"
+    "url": "https://github.com/AdhereZ/JSON-DECORATOR.git"
   },
   "author": "AdhereZ",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-json": "^6.0.0",
