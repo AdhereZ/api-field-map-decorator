@@ -1,0 +1,8 @@
+/node_modules
+/dist
+/esm
+/coverage
+/tests
+.eslintrc.js
+rollup.config.mjs
+jest.config.js
